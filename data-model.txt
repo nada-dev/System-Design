@@ -1,0 +1,38 @@
+ToDoList:
+  list_id: int, not nullable, primary_key
+  code: string, not nullable, unique 
+  user_id: int, not nullable
+  name: varchar(50)
+  description: text
+  priority: string //low, medium, high
+  order: int, not nullable 
+  created_at: timestamp 
+  updated_at: timestamp 
+  
+User:
+  user_id: int, not nullable, primary_key
+  user_name: varchar(50), unique, not nullable 
+  phone_numer: int,unique, not nullable
+  created_at: timestamp 
+  updated_at: timestamp 
+
+Task:
+  task_id: int, not nullable, primary_key
+  code: string, not nullable, unique  
+  name: varchar(50)
+  description: text
+  is_done: boolean 
+  priority: string //low, medium,high
+  order: int, not nullable 
+  created_at: timestamp 
+  updated_at: timestamp 
+  
+Subtask:
+  subtask_id: int, not nullable, primary_key
+  code: string, not nullable, unique 
+  parent_task_id: int
+  name: varchar(50)
+  description: text
+  is_done: boolean 
+  created_at: timestamp 
+  updated_at: timestamp 
