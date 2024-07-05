@@ -1,0 +1,138 @@
+--------------------------------------------------------list-------------------------------------------------------------
+
+
+GET/list/
+->{
+    'lists':[
+      {
+        'id_list': 1, list_code: 'list1','title': 'Attend meeting 1', 'priority': 0, 'created_at':'2024-07-05 14:37:52','updated_at': '2024-07-05 14:30:52', 'deleted_at': null
+      },
+      {
+        'id_list': 2, list_code: 'list2','title': 'Attend meeting 2', 'priority': 1, 'created_at':'2024-07-05 14:40:52','updated_at': '2024-03-05 14:40:52', 'deleted_at': null
+      }
+    ]
+}
+
+
+POST / list / create
+<- {
+    'title': 'Attend meeting 3', list_code: 'task3','priority': 0
+}
+-> {
+    'lists': [
+        {
+            'id_list': 1,list_code: 'list1','title': 'Attend meeting 1', 'priority': 0, 'postion':1, 'created_at':'2024-07-05 14:37:52','updated_at': '2024-07-05 14:37:52', 'deleted_at': null
+        },
+        {
+            'id_list': 2, list_code: 'list2','title': 'Attend meeting 1', 'priority': 1, 'postion':2, 'created_at':'2024-07-05 14:37:52','updated_at': '2024-07-05 14:37:52', 'deleted_at': null
+        },
+        {
+            'id_list': 3, list_code: 'list3','title': 'Attend meeting 3', 'priority': 1, 'postion':2, 'created_at':'2024-07-05 14:37:52','updated_at': '2024-07-05 14:37:52', 'deleted_at': null
+        },
+    ]
+}
+
+
+POST / list / update
+<- { 
+    'id_list': 1, 'title': 'Attend meeting 4' 
+}
+-> {
+    'lists': [
+        {
+            'id_list': 1, list_code: 'list1','title': 'Attend meeting 4', 'priority': 0, 'postion':1, 'created_at':'2024-03-15 14:37:52','updated_at': '2024-03-15 14:55:52', 'deleted_at': null
+        },
+
+    ]
+}
+
+POST / list / delete
+<- { 
+    'id_list': 1
+}
+-> {
+    'lists': [
+        {
+            'id_list': 2, list_code: 'list2','title': 'Attend meeting 1', 'priority': 1, 'postion':2, 'created_at':'2024-07-05 14:37:52','updated_at': '2024-07-05 14:37:52', 'deleted_at': null
+        },
+        {
+            'id_list': 3, list_code: 'list3','title': 'Attend meeting 3', 'priority': 1, 'postion':2, 'created_at':'2024-07-05 14:37:52','updated_at': '2024-07-05 14:37:52', 'deleted_at': null
+        },
+    ]
+}
+
+POST / list / UpdatePriority
+<- {
+     'id_list': 1, 'priority': 3
+}
+-> {
+    'lists': [
+        {
+            'id_list': 1,list_code: 'list1','title': 'Attend meeting 1', 'priority': 3, 'postion':1, 'created_at':'2024-07-05 14:37:52','updated_at': '2024-07-05 14:37:52', 'deleted_at': null
+        },
+        {
+            'id_list': 2, list_code: 'list2','title': 'Attend meeting 1', 'priority': 1, 'postion':2, 'created_at':'2024-07-05 14:37:52','updated_at': '2024-07-05 14:37:52', 'deleted_at': null
+        },
+        {
+            'id_list': 3, list_code: 'list3','title': 'Attend meeting 3', 'priority': 1, 'postion':2, 'created_at':'2024-07-05 14:37:52','updated_at': '2024-07-05 14:37:52', 'deleted_at': null
+        },
+    ]
+}
+--------------------------------------------------------tasks-------------------------------------------------------------
+POST / list / task / create
+<-{
+     'content': 'record meeting 1', 'priority': 0, 'is_done':false, 'id_list':1, 'id_parent_task':null
+}
+->{
+    'tasks':[
+        {
+            'id_task':1,task_code:'task1','content': 'record meeting 1', 'priority': 0, 'postion':1,  'is_done':false, 'id_list':1, 'id_parent_task':null,  'created_at':'2024-03-15 14:50:52','updated_at': '2024-03-15 14:50:52', 'deleted_at': null
+        }
+    ]
+}
+
+POST / list / task / update
+<- { 
+    'id_task': 1, 'content': 'record meeting 2'
+}
+-> {
+    'tasks':[
+        {
+            'id_task':1,task_code:'task1','content': 'record meeting 2', 'priority': 0, 'postion':1,  'is_done':false, 'id_list':1, 'id_parent_task':null,  'created_at':'2024-03-15 14:50:52','updated_at': '2024-03-15 14:55:52', 'deleted_at': null
+        }
+    ]
+}
+
+PUT / list / task / delete
+<- { 
+    'id_task': 1 
+}
+-> {
+    'tasks':[
+        
+    ]
+}
+PUT / list / task / changePriority
+<- { 
+    'id_task': 1 , 'priority': 1 
+}
+-> {
+    'tasks':[
+        {
+            'id_task':1,task_code:'task1','content': 'record meeting 2', 'priority': 1, 'postion':1, 'is_done':false, 'id_list':1, 'id_parent_task':null,  'created_at':'2024-03-15 14:50:52','updated_at': '2024-03-15 14:55:52', 'deleted_at': null
+        }
+    ]
+}
+
+
+
+PUT / list / task / markasdone
+-> {
+    'tasks':[
+        {
+            'id_task':1,task_code:'task1','content': 'record meeting 2', 'priority': 1, 'postion':1, 'is_done': true, 'id_list':1, 'id_parent_task':null,  'created_at':'2024-03-15 14:50:52','updated_at': '2024-03-15 14:55:52', 'deleted_at': null
+        }
+    ]
+}
+
+
